@@ -15,8 +15,6 @@ G_DECLARE_FINAL_TYPE(GstFakeFilter,
 
 typedef struct _GstFakeFilter {
     GstBaseTransform parent;
-    // GstPad* sinkpad;
-    // GstPad* srcpad;
 } GstFakeFilter;
 
 G_END_DECLS
