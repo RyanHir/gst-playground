@@ -1,0 +1,8 @@
+#pragma once
+
+#define GST_PACKAGE_VERSION "@PROJECT_VERSION@"
+#define GST_PACKAGE_LICENSE "LGPL"
+#define GST_PACKAGE_NAME "@PROJECT_NAME@"
+#define GST_PACKAGE_ORIGIN "https://example.com"
+
+#define PACKAGE "@PROJECT_NAME@"

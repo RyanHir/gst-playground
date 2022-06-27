@@ -1,0 +1,7 @@
+---
+Language: Cpp
+BasedOnStyle: Chromium
+IndentWidth: 4
+AllowAllArgumentsOnNextLine: false
+BinPackArguments: false
+BinPackParameters: false

@@ -1,0 +1,6 @@
+# IDE Junk
+.cache
+.vscode
+
+# Build artifacts
+build
