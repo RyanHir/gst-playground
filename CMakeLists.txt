@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16...3.16)
+cmake_minimum_required(VERSION 3.10...3.10)
 project(gst-test C)
 
 find_package(PkgConfig REQUIRED)
@@ -17,4 +17,5 @@ target_include_directories(gstreamer INTERFACE
 
 set(PLUGIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib/gstreamer-1.0/")
 
+add_subdirectory(gst-app)
 add_subdirectory(gst-plugin)
