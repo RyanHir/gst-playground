@@ -11,6 +11,9 @@ static gboolean gst_fake_filter_sink_event(GstPad* pad,
 static gboolean gst_fake_filter_src_query(GstPad* pad,
                                           GstObject* parent,
                                           GstQuery* query);
+static GstStateChangeReturn gst_fake_filter_change_state(
+    GstElement* element,
+    GstStateChange transition);
 
 static GstStaticPadTemplate sink_factory =
     GST_STATIC_PAD_TEMPLATE("sink",
@@ -29,12 +32,13 @@ G_DEFINE_TYPE(GstFakeFilter, gst_fake_filter, GST_TYPE_ELEMENT);
 static void gst_fake_filter_class_init(GstFakeFilterClass* klass) {
     GstElementClass* element_class = GST_ELEMENT_CLASS(klass);
 
-    gst_element_class_set_static_metadata(
-        element_class,
-        "Identity Plugin",
-        "FIXME:Generic",
-        "FIXME:Generic Element",
-        "No Contact");
+    element_class->change_state = gst_fake_filter_change_state;
+
+    gst_element_class_set_static_metadata(element_class,
+                                          "Identity Plugin",
+                                          "FIXME:Generic",
+                                          "FIXME:Generic Element",
+                                          "No Contact");
 
     gst_element_class_add_pad_template(
         element_class,
@@ -77,4 +81,29 @@ static gboolean gst_fake_filter_src_query(GstPad* pad,
                                           GstObject* parent,
                                           GstQuery* query) {
     return gst_pad_query_default(pad, parent, query);
+}
+
+static GstStateChangeReturn gst_fake_filter_change_state(
+    GstElement* element,
+    GstStateChange transition) {
+    GstStateChangeReturn ret = GST_STATE_CHANGE_SUCCESS;
+    GstFakeFilter* filter = GST_FAKE_FILTER(element);
+
+    switch (transition) {
+        case GST_STATE_CHANGE_NULL_TO_READY:
+            g_print("Hello World\n");
+            break;
+        default:
+            break;
+    }
+
+    switch (transition) {
+        case GST_STATE_CHANGE_READY_TO_NULL:
+            g_print("Goodbye World\n");
+            break;
+        default:
+            break;
+    }
+
+    return ret;
 }
