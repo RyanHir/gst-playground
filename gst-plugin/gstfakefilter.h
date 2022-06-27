@@ -1,6 +1,7 @@
 #pragma once
 
 #include <gst/gst.h>
+#include <gst/base/gstbasetransform.h>
 
 G_BEGIN_DECLS
 
@@ -10,12 +11,12 @@ G_DECLARE_FINAL_TYPE(GstFakeFilter,
                      gst_fake_filter,
                      GST,
                      FAKE_FILTER,
-                     GstElement);
+                     GstBaseTransform);
 
 typedef struct _GstFakeFilter {
-    GstElement element;
-    GstPad* sinkpad;
-    GstPad* srcpad;
+    GstBaseTransform parent;
+    // GstPad* sinkpad;
+    // GstPad* srcpad;
 } GstFakeFilter;
 
 G_END_DECLS

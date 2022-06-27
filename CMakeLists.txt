@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 3.10...3.10)
 project(gst-test C)
 
+set(GST_MIN_VERSION 1.14)
+
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GSTREAMER REQUIRED
-    gstreamer-1.0>=1.14
+    gstreamer-1.0>=${GST_MIN_VERSION}
+    gstreamer-base-1.0>=${GST_MIN_VERSION}
 )
 
 add_library(gstreamer INTERFACE)

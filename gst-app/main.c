@@ -4,7 +4,8 @@
 #include <gst/gst.h>
 #include <unistd.h>
 
-#define PIPELINE_LAUNCH "videotestsrc ! fake_filter ! fakesink"
+#define PIPELINE_LAUNCH_FAKE "videotestsrc ! queue ! fake_filter ! fakesink"
+#define PIPELINE_LAUNCH_XORG "videotestsrc ! queue ! fake_filter ! xvimagesink"
 
 static GstElement* pipeline = NULL;
 
@@ -12,7 +13,11 @@ int main(int argc, char** argv) {
     gst_init(&argc, &argv);
 
     GError* error = NULL;
-    pipeline = gst_parse_launch(PIPELINE_LAUNCH, &error);
+    if (getenv("DISPLAY")) {
+        pipeline = gst_parse_launch(PIPELINE_LAUNCH_XORG, &error);
+    } else {
+        pipeline = gst_parse_launch(PIPELINE_LAUNCH_FAKE, &error);
+    }
     if (error != NULL) {
         printf("gst_parse_launch error: %s\n", error->message);
         return EXIT_FAILURE;
