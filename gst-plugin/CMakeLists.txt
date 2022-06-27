@@ -6,6 +6,7 @@ project(fakeplugin
 set(SOURCES
     gstplugin.c
     gstfakefilter.c
+    gstfakevideofilter.c
 )
 configure_file(config.h.in config.h)
 

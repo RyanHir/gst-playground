@@ -7,6 +7,7 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(GSTREAMER REQUIRED
     gstreamer-1.0>=${GST_MIN_VERSION}
     gstreamer-base-1.0>=${GST_MIN_VERSION}
+    gstreamer-video-1.0>=${GST_MIN_VERSION}
 )
 
 add_library(gstreamer INTERFACE)
