@@ -17,9 +17,9 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -DCMAKE_INSTALL_PREFIX=/usr ..
+          cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} ..
           make
-          sudo make install
       - name: Test
         run: |
+          export GST_PLUGIN_PATH="${PWD}/build/gst-plugin"
           gst-inspect-1.0 | grep fakeplugin
